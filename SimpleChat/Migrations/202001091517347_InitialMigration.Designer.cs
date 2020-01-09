@@ -13,7 +13,7 @@ namespace SimpleChat.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202001091344476_InitialMigration"; }
+            get { return "202001091517347_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
