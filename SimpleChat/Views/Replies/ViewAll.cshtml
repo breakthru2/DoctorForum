@@ -24,6 +24,7 @@
     @foreach (var reply in Model.Replies)
     {
         <li class="btn btn-default" style="margin-top: 10px; text-align: right;">
+            <span class="text-danger">@reply.User.FullName</span> <br />
             @reply.RepliesText <br />
             <span style="color: lightslategray">@reply.ReplyDate</span>
         </li>

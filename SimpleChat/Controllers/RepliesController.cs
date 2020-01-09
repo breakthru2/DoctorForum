@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace SimpleChat.Controllers
 {
@@ -58,7 +59,7 @@ namespace SimpleChat.Controllers
 
             _db.SaveChanges();
 
-            var ViewAllReply = _db.Replies.Where(c => c.QuestionId == id).ToList();
+            var ViewAllReply = _db.Replies.Include(u => u.User).Where(c => c.QuestionId == id).ToList();
             var viewSpecificQuestion = _db.Questions.Where(c => c.Id == id).ToList();
 
             var view = new ViewReplies
@@ -72,7 +73,7 @@ namespace SimpleChat.Controllers
 
         public ActionResult ViewAll(int id)
         {
-            var ViewAllReply = _db.Replies.Where(c => c.QuestionId == id).ToList();
+            var ViewAllReply = _db.Replies.Include(u => u.User).Where(c => c.QuestionId == id).ToList();
             var viewSpecificQuestion = _db.Questions.Where(c => c.Id == id).ToList();
 
             var view = new ViewReplies
