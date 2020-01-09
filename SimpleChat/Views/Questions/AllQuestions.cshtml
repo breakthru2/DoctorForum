@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SimpleChat.Models.Questions>
+@{
+    ViewBag.Title = "AllQuestions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Questions</h2>
+
+@if (!Model.Any())
+{
+    <div class="jumbotron">No Questions Yet!!</div>
+}
+else
+{
+    <table class="table table-bordered table-hover" style="margin-top: 20px;">
+        <thead>
+            <tr>
+                <th>Question</th>
+                <th>Date Sent</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.QuestionText</td>
+                <td>@question.DateSent</td>
+                <td>
+                    @Html.ActionLink("Reply", "Reply", "Replies", new { id = question.Id }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("View Answers", "ViewAll", "Replies", new { id = question.Id }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+}
+
+
+<h3>@Html.ActionLink("Ask Questions", "Index", "Questions")</h3>
+

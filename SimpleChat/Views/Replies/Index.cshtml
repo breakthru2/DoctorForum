@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SimpleChat.Models.Replies>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Replies</h2>
+
+<ul>
+    @foreach (var reply in Model)
+    {
+        <li class="btn btn-default">@reply.RepliesText</li>
+    }
+</ul>
+
+

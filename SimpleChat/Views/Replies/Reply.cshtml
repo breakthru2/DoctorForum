@@ -1,0 +1,20 @@
+﻿@model SimpleChat.chatModel.Chat
+@{
+    ViewBag.Title = "Reply";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Reply</h2>
+
+<div class="jumbotron">@Model.Questions.QuestionText</div>
+
+@using (Html.BeginForm("ReplySave", "Replies", new { id = Model.Questions.Id}))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Replies.RepliesText)
+        @Html.TextBoxFor(m => m.Replies.RepliesText, new { @class = "form-control" })
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Send Reply</button>
+}
