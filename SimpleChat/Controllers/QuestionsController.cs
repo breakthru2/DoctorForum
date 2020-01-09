@@ -1,4 +1,5 @@
-﻿using SimpleChat.Models;
+﻿using Microsoft.AspNet.Identity;
+using SimpleChat.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,10 @@ namespace SimpleChat.Controllers
         public ActionResult Add(Questions questions)
         {
             questions.DateSent = DateTime.Now;
+
+            string user = User.Identity.GetUserId();
+            questions.UserId = user;
+
             _db.Questions.Add(questions);
 
             _db.SaveChanges();

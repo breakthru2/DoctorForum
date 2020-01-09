@@ -199,17 +199,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001090939159_InitailMigration.cs" />
-    <Compile Include="Migrations\202001090939159_InitailMigration.Designer.cs">
-      <DependentUpon>202001090939159_InitailMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001091007311_addedQuestiontoreply.cs" />
-    <Compile Include="Migrations\202001091007311_addedQuestiontoreply.Designer.cs">
-      <DependentUpon>202001091007311_addedQuestiontoreply.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001091145295_dontknow.cs" />
-    <Compile Include="Migrations\202001091145295_dontknow.Designer.cs">
-      <DependentUpon>202001091145295_dontknow.cs</DependentUpon>
+    <Compile Include="Migrations\202001091344476_InitialMigration.cs" />
+    <Compile Include="Migrations\202001091344476_InitialMigration.Designer.cs">
+      <DependentUpon>202001091344476_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -301,14 +293,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001090939159_InitailMigration.resx">
-      <DependentUpon>202001090939159_InitailMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001091007311_addedQuestiontoreply.resx">
-      <DependentUpon>202001091007311_addedQuestiontoreply.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001091145295_dontknow.resx">
-      <DependentUpon>202001091145295_dontknow.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001091344476_InitialMigration.resx">
+      <DependentUpon>202001091344476_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

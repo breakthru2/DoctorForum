@@ -3,7 +3,7 @@ namespace SimpleChat.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitailMigration : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -13,13 +13,12 @@ namespace SimpleChat.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         QuestionText = c.String(),
-                        UserId = c.Int(nullable: false),
+                        UserId = c.String(maxLength: 128),
                         DateSent = c.DateTime(nullable: false),
-                        User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
-                .Index(t => t.User_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -85,13 +84,15 @@ namespace SimpleChat.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         RepliesText = c.String(),
-                        UserId = c.Int(nullable: false),
+                        QuestionId = c.Int(nullable: false),
+                        UserId = c.String(maxLength: 128),
                         ReplyDate = c.DateTime(nullable: false),
-                        User_Id = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.AspNetUsers", t => t.User_Id)
-                .Index(t => t.User_Id);
+                .ForeignKey("dbo.Questions", t => t.QuestionId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .Index(t => t.QuestionId)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -108,19 +109,21 @@ namespace SimpleChat.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Replies", "User_Id", "dbo.AspNetUsers");
-            DropForeignKey("dbo.Questions", "User_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Replies", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Replies", "QuestionId", "dbo.Questions");
+            DropForeignKey("dbo.Questions", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Replies", new[] { "User_Id" });
+            DropIndex("dbo.Replies", new[] { "UserId" });
+            DropIndex("dbo.Replies", new[] { "QuestionId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
-            DropIndex("dbo.Questions", new[] { "User_Id" });
+            DropIndex("dbo.Questions", new[] { "UserId" });
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Replies");
             DropTable("dbo.AspNetUserRoles");

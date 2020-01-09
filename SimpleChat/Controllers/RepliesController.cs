@@ -1,4 +1,5 @@
-﻿using SimpleChat.chatModel;
+﻿using Microsoft.AspNet.Identity;
+using SimpleChat.chatModel;
 using SimpleChat.Models;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,9 @@ namespace SimpleChat.Controllers
         {
             replies.QuestionId = id;
             replies.ReplyDate = DateTime.Now;
+
+            string user = User.Identity.GetUserId();
+            replies.UserId = user;
 
             _db.Replies.Add(replies);
 
